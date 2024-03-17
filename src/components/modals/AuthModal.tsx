@@ -6,13 +6,16 @@ import ResetPassword from "@/components/modals/ResetPassword";
 import {useRecoilValue} from "recoil";
 import {authModalState} from "@/atoms/authModalAtom";
 import {useCloseModal} from "@/hooks/useCloseModal";
+import {createPortal} from "react-dom";
 
 type AuthModalProps = {};
 
 const AuthModal: React.FC<AuthModalProps> = () => {
-  const closeModal = useCloseModal();
+  const closeModal = useCloseModal('auth');
+  const modalRootEl = document.getElementById('modal')
 
-  return (
+  return modalRootEl ?
+    createPortal(
     <>
       <div className='absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60' onClick={closeModal}></div>
       <div className='w-full sm:w-[450px]  absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]  flex justify-center items-center'>
@@ -31,8 +34,8 @@ const AuthModal: React.FC<AuthModalProps> = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+    </>, modalRootEl
+  ) : null;
 };
 
 const ModalWrapper = () => {

@@ -1,5 +1,6 @@
 import { atom} from "recoil";
 
+// ==========  Auth State   ==========
 export type AuthModalState = {
   isOpen: boolean;
   type: 'login' | 'register' | 'forgotPassword';
@@ -13,4 +14,4 @@ const InitialAuthModalState: AuthModalState = {
 export const authModalState = atom<AuthModalState>({
   key: 'authModalState',
   default: InitialAuthModalState,
-})
+});
