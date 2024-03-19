@@ -1,18 +1,19 @@
 'use client'
 
-import React from 'react';
-import {problems} from "@/mockdata/problems";
+import React, {useEffect} from 'react';
 import {BsCheckCircle} from "react-icons/bs";
 import Link from "next/link";
 import {AiFillYoutube} from "react-icons/ai";
 import VideoSolutionModal from "@/components/modals/VideoSolutionModal";
 import {useRecoilState} from "recoil";
 import {videoSolutionModalState} from "@/atoms/videoSolutionModalAtom";
+import useGetProblems from "@/hooks/useGetProblems";
 
 type ProblemsTableProps = {}
 
 const ProblemsTable: React.FC<ProblemsTableProps> = () => {
-  const [videoModal, setVideoModal] = useRecoilState(videoSolutionModalState)
+  const [videoModal, setVideoModal] = useRecoilState(videoSolutionModalState);
+  const problems = useGetProblems();
 
   return (
     <>
@@ -26,7 +27,7 @@ const ProblemsTable: React.FC<ProblemsTableProps> = () => {
               <BsCheckCircle fontSize={"18"} width='18'/>
             </th>
             <td className='px-6 py-4'>
-              <Link className='hover:text-blue-600 cursor-pointer' href={`/problems/${problem.id}`}>
+              <Link className='hover:text-blue-600 cursor-pointer' href={`/problems/${problem.id}/workspace`}>
                 {problem.title}
               </Link>
             </td>

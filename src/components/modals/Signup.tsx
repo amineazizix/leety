@@ -4,6 +4,7 @@ import {authModalState} from "@/atoms/authModalAtom";
 import {useCreateUserWithEmailAndPassword} from "react-firebase-hooks/auth";
 import { auth} from "@/firebase/firebase";
 import {useRouter} from "next/navigation";
+import {toast} from "react-toastify";
 
 type SignupProps = {};
 const Signup: React.FC<SignupProps> = () => {
@@ -25,18 +26,18 @@ const Signup: React.FC<SignupProps> = () => {
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(!inputs.email || !inputs.full_name || !inputs.password) alert('Please fill all the fields')
+    if(!inputs.email || !inputs.full_name || !inputs.password) toast.error(`Please fill in all the fields`, { position: "top-center", autoClose: 3000, theme: "dark" });
     try {
       const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password);
       if(!newUser) return;
       router.push('/');
     } catch (e: any) {
-      alert(e.message)
+      toast.error(`${e.message}`, { position: "top-center", autoClose: 3000, theme: "dark" });
     }
   }
 
   useEffect(() => {
-    if(error) alert(error.message);
+    if(error) toast.error(`${error.message}`, { position: "top-center", autoClose: 3000, theme: "dark" });
   }, [error]);
 
   const handleClickLogin = () => {
