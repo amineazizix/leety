@@ -1,16 +1,23 @@
+'use client'
+
 import type {Metadata} from "next";
 import Topbar from "@/components/topbar/Topbar";
 import ProblemsTable from "@/components/problemsTable/ProblemsTable";
 import React, {Suspense} from "react";
+import useHasMounted from "@/hooks/useHasMounted";
 // import { doc, setDoc } from "firebase/firestore";
 // import {firestore} from "@/firebase/firebase";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Leety",
   description: "Learn to code",
 };
 
 export default function Home() {
+  const hasMounted = useHasMounted();
+
+  if (!hasMounted) return null;
+
   // Adding problems to DB
   // const [inputs, setInputs] = useState({
   //   id: '',

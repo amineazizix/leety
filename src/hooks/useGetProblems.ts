@@ -12,7 +12,7 @@ export default function useGetProblems() {
       // fetching data logic
       const colRef = collection(firestore, 'problems');
 
-      // const q = query(colRef, orderBy("order", "asc"));
+      // const q = query(colRef , orderBy("order", "asc"));
 
       const querySnapshot = await getDocs(colRef);
       const tmp: DBProblem[] = [];

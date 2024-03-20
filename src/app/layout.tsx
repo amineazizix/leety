@@ -6,6 +6,7 @@ import {RecoilRoot} from "recoil";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import {ToastContainer} from "react-toastify";
+import useHasMounted from "@/hooks/useHasMounted";
 
 const inter = Inter({ subsets: ["latin"] });
 
