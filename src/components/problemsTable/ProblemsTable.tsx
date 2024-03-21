@@ -8,12 +8,14 @@ import VideoSolutionModal from "@/components/modals/VideoSolutionModal";
 import {useRecoilState} from "recoil";
 import {videoSolutionModalState} from "@/atoms/videoSolutionModalAtom";
 import useGetProblems from "@/hooks/useGetProblems";
+import useGetSolvedProblems from "@/hooks/useGetSolvedProblems";
 
 type ProblemsTableProps = {}
 
 const ProblemsTable: React.FC<ProblemsTableProps> = () => {
   const [videoModal, setVideoModal] = useRecoilState(videoSolutionModalState);
   const problems = useGetProblems();
+  const solvedProblems = useGetSolvedProblems();
 
   return (
     <>
@@ -24,7 +26,7 @@ const ProblemsTable: React.FC<ProblemsTableProps> = () => {
         return (
           <tr className={`${idx % 2 == 1 ? 'bg-dark-layer-1' : ''}`} key={problem.id}>
             <th className='px-2 py-4 font-medium whitespace-nowrap text-dark-green-s'>
-              <BsCheckCircle fontSize={"18"} width='18'/>
+              {solvedProblems.includes(problem.id) && <BsCheckCircle fontSize={"18"} width='18' />}
             </th>
             <td className='px-6 py-4'>
               <Link className='hover:text-blue-600 cursor-pointer' href={`/problems/${problem.id}/workspace`}>

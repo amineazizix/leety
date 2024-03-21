@@ -20,7 +20,7 @@ export default function useGetCurrentProblem(problemId: string) {
         // easy, medium, hard
         setProblemDifficultyClass(
           problem.difficulty === "Easy"
-            ? "bg-olive text-olive"
+            ? "bg-green-700 text-green-400"
             : problem.difficulty === "Medium"
               ? "bg-dark-yellow text-dark-yellow"
               : " bg-dark-pink text-dark-pink"
